@@ -1,0 +1,88 @@
+1Q)How to compare two JSON have the same properties without order?
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+
+Answer:- 
+
+var obj1 = { name: "Person 1", age:5 };
+var obj2 = { age:5, name: "Person 1" };
+
+var flag=true;
+
+if(Object.keys(obj1).length==Object.keys(obj2).length){
+    for(key in obj1) { 
+        if(obj1[key] == obj2[key]) {
+            continue;
+        }
+        else {
+            flag=false;
+            break;
+        }
+    }
+}
+else {
+    flag=false;
+}
+console.log("is object equal: "+flag);    
+__________________________________________
+2Q)Use the rest countries API url -> https://restcountries.eu/rest/v2/all and display all the country flags in console
+
+Answer:- 
+
+// 1.initialize a xml http request
+var xhr = new XMLHttpRequest();
+
+// 2.Open a request
+xhr.open("GET", "https://restcountries.com/v2/all");
+
+// 3.load the response
+xhr.onload = function () {
+  //please provide me data if my request lies in range 200-299
+  if (xhr.status >= 200 && xhr.status < 300) {
+    let data = JSON.parse(this.response);
+    // console.log(xhr.response);
+    for (let i = 0; i < data.length; i++) {
+      let user = data[i];
+      console.log(` Country: ${user.name} Flag: ${user.flag} `);
+    }
+  }
+};
+
+// 4.sent the rquest to server
+xhr.send();
+
+__________________________________________
+3Q)Use the same rest countries and print all countries name, region, sub region and population
+
+Answer:- 
+
+// 1.initialize a xml http request
+var xhr = new XMLHttpRequest();
+
+// 2.Open a request
+xhr.open("GET", "https://restcountries.com/v2/all");
+
+// 3.load the response
+xhr.onload = function () {
+  //please provide me data if my request lies in range 200-299
+  if (xhr.status >= 200 && xhr.status < 300) {
+    let data = JSON.parse(this.response);
+    // console.log(xhr.response);
+    for (let i = 0; i < data.length; i++) {
+      let user = data[i];
+      console.log(
+          `
+          country: ${user.name}
+          region: ${user.region}
+          subregion: ${user.subregion}
+          population: $(user.population)
+          `
+      );
+    }
+  }
+};
+
+// 4.sent the rquest to server
+xhr.send();
+__________________________________________
+4)https://medium.com/@reach2arunprakash/www-guvi-io-zen-d395deec1373
