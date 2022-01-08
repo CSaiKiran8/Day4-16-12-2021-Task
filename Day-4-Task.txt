@@ -75,7 +75,7 @@ xhr.onload = function () {
           country: ${user.name}
           region: ${user.region}
           subregion: ${user.subregion}
-          population: $(user.population)
+          population: ${user.population}
           `
       );
     }
